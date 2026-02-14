@@ -1,0 +1,87 @@
+@model Mission6_Ashby.Models.Movie
+
+@{
+    ViewData["Title"] = "Add Movie";
+}
+
+<h1>Add Movie to Collection</h1>
+<hr />
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label">Title</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="Year" class="form-label">Year</label>
+                <input asp-for="Year" class="form-control" placeholder="e.g., 2008 or 2001-2002" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="CategoryId" class="form-label">Category</label>
+                <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.Categories">
+                    <option value="">-- Select Category --</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="DirectorId" class="form-label">Director</label>
+                <select asp-for="DirectorId" class="form-select" asp-items="ViewBag.Directors">
+                    <option value="">-- Select Director --</option>
+                </select>
+                <span asp-validation-for="DirectorId" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="Rating" class="form-label">Rating</label>
+                <select asp-for="Rating" class="form-select" asp-items="ViewBag.Ratings">
+                    <option value="">-- Select Rating --</option>
+                </select>
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3 form-check">
+                <input asp-for="Edited" class="form-check-input" type="checkbox" />
+                <label asp-for="Edited" class="form-check-label">Is this an edited version?</label>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="LentTo" class="form-label">Lent To (Optional)</label>
+                <input asp-for="LentTo" class="form-control" />
+                <span asp-validation-for="LentTo" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="Notes" class="form-label">Notes (Optional, max 25 characters)</label>
+                <input asp-for="Notes" class="form-control" maxlength="25" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+                <small class="form-text text-muted">e.g., Plex, Blu-ray, Amazon Prime</small>
+            </div>
+            
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Add Movie</button>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

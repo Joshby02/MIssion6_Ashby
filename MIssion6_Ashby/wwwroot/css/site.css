@@ -1,0 +1,45 @@
+html {
+    font-size: 14px;
+    height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Fixed Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: white;
+}
+
+/* Prevent content from hiding under fixed header */
+.container {
+    flex: 1;
+    padding-top: 80px; /* Adjust if your header height changes */
+}
+
+/* Main content spacing */
+main {
+    padding-bottom: 20px;
+}
+
+/* Sticky Footer (NOT fixed) */
+.footer {
+    background-color: white;
+    border-top: 1px solid #dee2e6;
+    padding: 20px 0;
+}
