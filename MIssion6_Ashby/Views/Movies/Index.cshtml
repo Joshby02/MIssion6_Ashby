@@ -1,0 +1,56 @@
+@model IEnumerable<Mission6_Ashby.Models.Movie>
+
+@{
+    ViewData["Title"] = "Movie Collection";
+}
+
+<h1>Joel Hilton's Movie Collection</h1>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Movie</a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Director</th>
+                <th>Rating</th>
+                <th>Edited</th>
+                <th>Plex</th>
+                <th>Lent To</th>
+                <th>Notes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td>@movie.Title</td>
+                    <td>@movie.Year</td>
+                    <td>@(movie.Director ?? "-")</td>
+                    <td>@movie.Rating</td>
+                    <td>@(movie.Edited ? "Yes" : "No")</td>
+                    <td>@(movie.CopiedToPlex ? "Yes" : "No")</td>
+                    <td>@(movie.LentTo ?? "-")</td>
+                    <td>@(movie.Notes ?? "-")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@movie.MovieId" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@movie.MovieId" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

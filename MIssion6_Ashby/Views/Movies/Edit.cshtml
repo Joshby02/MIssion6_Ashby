@@ -1,24 +1,17 @@
 ﻿@model Mission6_Ashby.Models.Movie
 
 @{
-    ViewData["Title"] = "Add Movie";
+    ViewData["Title"] = "Edit Movie";
 }
 
-<h1>Add Movie to Collection</h1>
+<h1>Edit Movie</h1>
 <hr />
-
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show">
-        @TempData["SuccessMessage"]
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-}
 
 <div class="row">
     <div class="col-md-8">
-        <form asp-action="Create" method="post">
+        <form asp-action="Edit" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MovieId" />
             
             <div class="mb-3">
                 <label asp-for="Title" class="form-label">Title</label>
@@ -79,7 +72,7 @@
             </div>
             
             <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Add Movie</button>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
                 <a asp-action="Index" class="btn btn-secondary">Cancel</a>
             </div>
         </form>
