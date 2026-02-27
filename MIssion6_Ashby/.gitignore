@@ -8,10 +8,6 @@
 [Bb]in/
 [Oo]bj/
 
-# Database files
-*.db
-*.db-shm
-*.db-wal
 
 # Visual Studio cache/options
 .vs/
